@@ -172,7 +172,11 @@ const { title, meta_title, description, image, noindex, canonical } =
   <body>
     <TwSizeIndicator />
     <Header />
-    <main id="main-content" class="min-h-[60vh]">
+    <main
+      id="main-content"
+      class="min-h-[60vh] p-4 sm:p-6 mx-auto lg:max-w-3xl"
+      transition:animate="slide"
+    >
       <slot />
     </main>
     <Footer />
