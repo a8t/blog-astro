@@ -1,9 +1,9 @@
 html {
-  @apply text-base;
+  @apply text-primary;
 }
 
 body {
-  @apply bg-body font-primary font-normal leading-relaxed text-text;
+  @apply bg-body font-secondary font-normal leading-relaxed text-text;
 }
 
 h1,
@@ -43,4 +43,45 @@ h5,
 h6,
 .h6 {
   @apply text-h6;
+}
+
+
+a {
+  @apply text-teal-500 underline;
+}
+
+.prose a {
+  @apply text-teal-500 underline !important;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5 {
+  @apply text-slate-500 !important;
+}
+
+// @import "tailwindcss/utilities";
+
+.page-header {
+  @apply text-5xl text-gray-500 font-black;
+}
+
+@screen sm {
+  .page-header {
+    @apply text-5xl;
+  }
+}
+
+a.anchor {
+  top: 0.35em;
+  left: -0.85em;
+  position: absolute;
+
+  @apply opacity-0 hover:opacity-100 transition-opacity duration-150;
+}
+
+html {
+  scroll-padding-top: 2em;
 }

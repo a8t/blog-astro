@@ -17,9 +17,9 @@
   },
   "fonts": {
     "font_family": {
-      "primary": "Mulish:wght@400;600;700",
+      "primary": "Merriweather Sans:wght@400;600;700;900",
       "primary_type": "sans-serif",
-      "secondary": "",
+      "secondary": "Inter:wght@400;600;700;800",
       "secondary_type": ""
     },
     "font_size": {
