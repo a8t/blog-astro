@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+import Base from "@/layouts/Base.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import { getEntry } from "astro:content";
+
+const entry = await getEntry("about-me", "index");
+const { Content } = await entry.render();
+const { title, description, meta_title } = entry.data;
+
+import image from "../assets/images/illustrations/waving.png";
+---
+
+<Base title={title} meta_title={meta_title} description={description}>
+  <header
+    class="mb-12 flex flex-col-reverse sm:flex-row sm:space-x-4 items-center sm:items-end relative"
+  >
+    <section class="max-w-lg flex flex-col">
+      <div class="prose prose-sm sm:prose">
+        <h1 set:html={markdownify(title)} class="h3 mb-8" />
+
+        <div class="content">
+          <Content />
+        </div>
+      </div>
+      <!-- <SocialButtons /> -->
+    </section>
+    <div class="w-48 pb-12 sm:sticky sm:bottom-0">
+      {
+        image && (
+          <div class="img-cover mb-8">
+            <Image
+              src={image}
+              width={295}
+              height={395}
+              alt={title}
+              class="rounded-lg w-full"
+            />
+          </div>
+        )
+      }
+    </div>
+  </header>
+</Base>
