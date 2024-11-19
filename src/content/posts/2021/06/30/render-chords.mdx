@@ -5,7 +5,7 @@ description: "According to me 😁"
 categories: ["tech"]
 ---
 
-#### Table of Contents {#contents}
+#### Table of Contents
 
 1. [Introduction](#intro)
 1. [Chord charts? Transposition?](#chord-charts)
@@ -14,7 +14,7 @@ categories: ["tech"]
    1. [Consumers](#consumers)
    1. [Markdown](#markdown)
 
-## Introduction {#intro}
+## Introduction
 
 I have a [section of this website](/chords) dedicated to displaying chord charts of songs I like, along with a feature to transpose the chord charts. This post will explain how I used React Contexts and [TonalJS](https://github.com/tonaljs/tonal) to make this work.
 
@@ -42,7 +42,7 @@ This is an important feature for me as a musician who can't sing that well. It m
 
 So how did I build it into my website?
 
-## Okay, show me the code! {#code}
+## Okay, show me the code!
 
 In order to support this feature, I needed to dynamically set a semitone offset by which to transpose. So I would need to have some sort of "control panel", as well as the chord charts themselves. This is the design I ended up with:
 
@@ -50,7 +50,7 @@ In order to support this feature, I needed to dynamically set a semitone offset 
 
 So how do the controls "talk to" the chord chart?
 
-### TransposeContext {#transposecontext}
+### TransposeContext
 
 The first thing I noticed is that some state is shared between two independent pieces of UI: the control menu panel, and the chords themselves. In situations like these, where some state needs to be centralized between separate consumers, I usually reach for [React Contexts](https://reactjs.org/docs/context.html). Here's what I did:
 
@@ -87,7 +87,7 @@ I created a [Context Provider](https://reactjs.org/docs/context.html#contextprov
 
 I also included a [hook](https://reactjs.org/docs/hooks-reference.html#usecontext) (`useTransposeContext`) to provide a nice way for consumers of the `TransposeContext` to access the context object.
 
-### Context consumers {#consumers}
+### Context consumers
 
 Next, I added components that consume that context - first, the `TransposeControl` component which needs to access the current semitone offset (which ranges from -11 to +11) to display it, as well as `reset`, `decrement`, and `increment` to change that offset. Those get hooked up to a set of buttons.
 
@@ -142,7 +142,7 @@ Aside from important styling concerns (monospace font to keep spacing consistent
 
 The `Chords` component expects its [children](https://reactjs.org/docs/composition-vs-inheritance.html#containment) to be a plain string. It takes this string and does a regex find-and-replace, mapping each chord to the chord transposed by the semitone I got from the context.
 
-### Markdown {#markdown}
+### Markdown
 
 Inside the song's chord chart [MDX](https://mdxjs.com/) file, I need to wrap each row of chords and lyrics using the above components:
 
