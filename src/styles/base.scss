@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  @apply bg-stone-100 font-secondary font-normal leading-relaxed text-gray-700;
+  @apply bg-stone-50 font-secondary font-normal leading-relaxed text-gray-700;
 }
 
 h1,
@@ -47,7 +47,7 @@ h6,
 
 
 a {
-  @apply text-teal-500 underline;
+  @apply text-teal-600 underline;
 }
 
 .prose a {
