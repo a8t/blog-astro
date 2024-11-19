@@ -11,11 +11,11 @@ const { className, posts, fluid } = Astro.props;
 ---
 
 <div
-  class={`row gy-5 gx-4 ${className} ${posts.length == 1 ? "justify-center" : ""} `}
+  class={`grid grid-cols-2 gap-6 ${className} ${posts.length == 1 ? "justify-center" : ""} `}
 >
   {
     posts.map((post: any, i: number) => (
-      <div class={i === 0 && fluid != false ? "col-12" : "col-12 sm:col-6"}>
+      <div class={`md:bg-stone-100 md:p-5 rounded-sm min-h-44`}>
         {post.data.image && (
           <a
             href={`/${post.slug}`}
@@ -30,34 +30,8 @@ const { className, posts, fluid } = Astro.props;
             />
           </a>
         )}
-        <ul class="mt-6 mb-4 flex flex-wrap items-center text-text">
-          <li class="mr-5">
-            {authors
-              .filter((author) =>
-                post.data.authors
-                  .map((author: string) => slugify(author))
-                  .includes(slugify(author.data.title))
-              )
-              .map((author) => (
-                <a
-                  href={`/authors/${slugify(author.data.title)}`}
-                  class="flex items-center hover:text-primary font-medium"
-                >
-                  {author.data.image && (
-                    <Image
-                      src={author.data.image}
-                      alt={author.data.title}
-                      height={50}
-                      width={50}
-                      class="mr-2 h-6 w-6 rounded-full"
-                    />
-                  )}
-                  <span>{author.data.title}</span>
-                </a>
-              ))}
-          </li>
+        <ul class="mb-2 flex flex-wrap items-center text-text opacity-75 text-xs hover:opacity-100 ">
           <li class="mr-5 flex items-center flex-wrap font-medium">
-            <BiCalendarEdit className="mr-1 h-5 w-5 text-gray-600" />
             <>{dateFormat(post.data.date)}</>
           </li>
           <li class="mr-5 flex items-center flex-wrap">
@@ -79,24 +53,27 @@ const { className, posts, fluid } = Astro.props;
             </>
           </li>
         </ul>
-        <h3 class="mb-4">
+        <h5 class="mb-2">
           <a
             href={`/${post.slug}`}
             class="block hover:text-primary transition duration-300"
           >
             {post.data.title}
           </a>
-        </h3>
-        <p class="text-text">
-          {plainify(
-            post.body?.slice(
-              0,
-              Number(
-                i === 0 && fluid != false ? summary_length * 2 : summary_length
-              )
-            )
-          )}
-          ...
+        </h5>
+        <p class="text-text italic">
+          {post.data.description === ""
+            ? plainify(
+                post.body?.slice(
+                  0,
+                  Number(
+                    i === 0 && fluid != false
+                      ? summary_length * 2
+                      : summary_length,
+                  ),
+                ),
+              ) + "..."
+            : post.data.description}
         </p>
       </div>
     ))
