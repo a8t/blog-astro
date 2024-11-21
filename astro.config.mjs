@@ -31,6 +31,7 @@ export default defineConfig({
         "@/components/global/Youtube",
         "@/components/global/Tabs",
         "@/components/global/Tab",
+        "@/components/global/FlickrScript",
       ],
     }),
     mdx(),
