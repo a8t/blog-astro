@@ -3,10 +3,7 @@ import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { humanize } from "@/lib/utils/textConverter";
 
-import { FaHashtag } from "react-icons/fa";
-
 const chords = await getSinglePage("chords");
-console.log(chords);
 ---
 
 <Base title={"Chords"}>
