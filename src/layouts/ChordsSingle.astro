@@ -1,0 +1,44 @@
+---
+import dateFormat from "@/lib/utils/dateFormat";
+import { markdownify } from "@/lib/utils/textConverter";
+import { BiCalendarEdit } from "react-icons/bi";
+import { Chords, Lyrics, Section } from "@/components/chords/Chords";
+import { ControlMenu } from "@/components/chords/controls/ControlMenu";
+import { TransposeProvider } from "@/components/chords/Chords";
+import { TransposeControl } from "@/components/chords/Chords";
+import { AutoScrollControl } from "@/components/chords/controls/AutoScrollControl";
+
+const {
+  data: { data, render },
+} = Astro.props;
+
+const { Content } = await render();
+const { title, date } = data;
+---
+
+<section class="section">
+  <div class="container">
+    <article class="row justify-center">
+      <div class="md:col-10 text-center">
+        <h1 set:html={markdownify(title)} class="h2" />
+        <ul class="mt-4 flex flex-wrap items-center justify-center text-text">
+          <li class="mx-3 flex items-center flex-wrap font-medium">
+            <BiCalendarEdit className="mr-1 h-5 w-5 text-gray-600" />
+            <>{dateFormat(date)}</>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content">
+        <TransposeProvider client:load>
+          <ControlMenu client:load>
+            <AutoScrollControl client:load />
+            <TransposeControl client:load />
+          </ControlMenu>
+
+          <Content components={{ Chords, Lyrics, Section }} />
+        </TransposeProvider>
+      </div>
+    </article>
+  </div>
+</section>

@@ -103,14 +103,14 @@ export function TransposeControl() {
     <div className="flex space-x-2 items-center">
       <span className="text-gray-500 text-sm">Transpose</span>
 
-      <ControlButton onClick={reset} disabled={isUnison}>
+      <ControlButton onPress={reset} disabled={isUnison}>
         <FaTimesCircle className="w-8 h-8" />
       </ControlButton>
-      <ControlButton onClick={decrement}>
+      <ControlButton onPress={decrement}>
         <FaMinusCircle className="w-8 h-8" />
       </ControlButton>
       <div className="text-md w-6 text-center">{semitones}</div>
-      <ControlButton onClick={increment}>
+      <ControlButton onPress={increment}>
         <FaPlusCircle className="w-8 h-8" />
       </ControlButton>
     </div>

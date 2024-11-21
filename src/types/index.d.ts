@@ -16,6 +16,18 @@ export interface TAuthor {
   render: () => Promise<{ Content: any }>;
 }
 
+export interface TChord {
+  id: string;
+  slug: string;
+  body: string;
+  data: {
+    date: string;
+    title: string;
+    description: string;
+  };
+  render: () => Promise<{ Content: any }>;
+}
+
 export interface TPost {
   id: string;
   slug: string;
