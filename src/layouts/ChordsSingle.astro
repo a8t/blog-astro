@@ -2,11 +2,11 @@
 import dateFormat from "@/lib/utils/dateFormat";
 import { markdownify } from "@/lib/utils/textConverter";
 import { BiCalendarEdit } from "react-icons/bi";
-import { Chords, Lyrics, Section } from "@/components/chords/Chords";
+import { Lyrics, Section } from "@/components/chords/Chords";
 import { ControlMenu } from "@/components/chords/controls/ControlMenu";
-import { TransposeProvider } from "@/components/chords/Chords";
 import { TransposeControl } from "@/components/chords/Chords";
 import { AutoScrollControl } from "@/components/chords/controls/AutoScrollControl";
+import ChordRenderer from "@/components/chords/ChordRenderer.astro";
 
 const {
   data: { data, render },
@@ -30,14 +30,12 @@ const { title, date } = data;
       </div>
 
       <div class="content">
-        <TransposeProvider client:load>
-          <ControlMenu client:load>
-            <AutoScrollControl client:load />
-            <TransposeControl client:load />
-          </ControlMenu>
+        <ControlMenu client:load>
+          <AutoScrollControl client:load />
+          <TransposeControl client:load />
+        </ControlMenu>
 
-          <Content components={{ Chords, Lyrics, Section }} />
-        </TransposeProvider>
+        <Content components={{ Chords: ChordRenderer, Lyrics, Section }} />
       </div>
     </article>
   </div>

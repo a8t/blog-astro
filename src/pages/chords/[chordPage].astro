@@ -1,14 +1,8 @@
 ---
-import { Chords } from "@/components/chords/Chords";
 import Base from "@/layouts/Base.astro";
 import ChordsSingle from "@/layouts/ChordsSingle.astro";
-import Default from "@/layouts/Default.astro";
 
 import { getSinglePage } from "@/lib/contentParser.astro";
-import type { TChord } from "@/types";
-
-const getChords = (await getSinglePage("chords")) as TChord[];
-const chordsSlugs = getChords.map((item) => item.slug);
 
 export async function getStaticPaths() {
   const posts = await getSinglePage("chords");

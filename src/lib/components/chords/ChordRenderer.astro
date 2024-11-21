@@ -1,0 +1,41 @@
+---
+import React from "react";
+import { transposeSemitones } from "./chordStore";
+import { Chord, Interval } from "tonal";
+---
+
+<chords-element>
+  <span
+    class="block font-mono whitespace-pre text-green-700
+mt-2 text-xs
+sm:mt-4 sm:text-md"
+  >
+    <slot />
+  </span>
+</chords-element>
+
+<script>
+  import { transposeSemitones } from "./chordStore";
+  import { Chord, Interval } from "tonal";
+
+  class ChordElement extends HTMLElement {
+    connectedCallback() {
+      const span = this.querySelector("span");
+      const originalChords = span?.textContent;
+
+      transposeSemitones.listen(async (semitones) => {
+        if (!span || !originalChords) {
+          return;
+        }
+
+        span.textContent = originalChords
+          .toString()
+          .replace(/\w+/g, (chord: string) =>
+            Chord.transpose(chord, Interval.fromSemitones(semitones)),
+          );
+      });
+    }
+  }
+
+  customElements.define("chords-element", ChordElement);
+</script>
