@@ -11,7 +11,7 @@ export interface TAuthor {
       facebook: string;
       twitter: string;
       instagram: string;
-    }
+    };
   };
   render: () => Promise<{ Content: any }>;
 }
@@ -26,7 +26,6 @@ export interface TPost {
     description: string;
     date: any;
     image: string;
-    authors: string[];
     categories: string[];
     tags: string[];
     draft: boolean;
