@@ -5,6 +5,8 @@ import Pagination from "@/components/Pagination.astro";
 import Posts from "@/layouts/Posts.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
+import { Image } from "astro:assets";
+import waving from "../assets/images/illustrations/waving.png";
 
 const posts = await getSinglePage("posts");
 const sortedPosts = sortByDate(posts);
@@ -18,7 +20,7 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
       class="mb-12 sm:mt-12 p-2 flex flex-col items-center sm:flex-row sm:space-x-4"
     >
       <div class="w-48 sm:w-2/3">
-        <img src="/images/illustrations/waving.png" alt="Andy waving" />
+        <Image src={waving} alt="Andy waving" />
       </div>
       <section class="max-w-lg flex flex-col py-4">
         <h1 class="text-3xl sm:text-5xl text-teal-700 font-black mb-4">

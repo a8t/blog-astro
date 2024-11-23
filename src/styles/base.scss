@@ -3,6 +3,7 @@ html {
 }
 
 body {
+  min-height: 100vh;
   @apply bg-stone-50 font-secondary font-normal leading-relaxed text-gray-700;
 }
 
