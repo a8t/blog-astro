@@ -1,0 +1,25 @@
+---
+title: I switched to Astro!
+date: 2024-11-22T19:27:32Z
+description: "Whew."
+categories: ["tech", "astro"]
+---
+
+I switched my blog from [Gatsby](https://www.gatsbyjs.com/) to [Astro](https://astro.build/).
+
+I first wrote my blog in Gatsby because I was already familiar with React. I went through two or three major [versions upgrades](/2021/06/25/gatsby-v3) of Gatsby, each perilous and fraught.
+
+In total, my transition from Gatsby to Astro took about 3 days from first deciding to switch away from Gatsby, to choosing between NextJS and Astro, to actually getting the Astro blog up and running. In other words, it didn't take long at all. I'm happy with the results.
+
+In general, I want an ecosystem that feels lively without painful breaking changes. There was a time that Gatsby felt like that, but it's not that time anymore. I'm not sure if Astro will be that way forever, but I'm willing to give it a shot.
+
+Some notes on the process:
+
+- I didn't really read Astro's docs that deeply. ¯\\\_(ツ)_/¯
+- I chose a blog starter from [Astro's starter list](https://astro.build/blog/starters). I removed a bunch of stuff that I didn't need, which in itself was a useful learning process.
+- I was able to copy most of my React components over and use them without a hitch.
+- I had to convert a few small things, like dates in my markdown files from string to date
+- I had to rebuild part of my [chord chart system](/2021/06/30/render-chords.mdx). It previously relied on React Contexts, which Astro *does* support, but not with the same markdown integration that Gatsby had. It has to do with Astro's islands concept.I followed Astro's advice and used [nanostores](https://github.com/nanostores/nanostores) with a [custom element](https://astro.build/blog/introducing-custom-elements). 
+- I kept Tailwind. I like Tailwind, sue me!
+
+If I have to do a big migration like this again, I swear I'm going to just switch to WordPress.
