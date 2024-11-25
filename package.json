@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && cp _redirects dist/_redirects",
     "format": "prettier -w ."
   },
   "dependencies": {
