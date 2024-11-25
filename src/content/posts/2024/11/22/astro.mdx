@@ -19,7 +19,7 @@ Some notes on the process:
 - I chose a blog starter from [Astro's starter list](https://astro.build/blog/starters). I removed a bunch of stuff that I didn't need, which in itself was a useful learning process.
 - I was able to copy most of my React components over and use them without a hitch.
 - I had to convert a few small things, like dates in my markdown files from string to date
-- I had to rebuild part of my [chord chart system](/2021/06/30/render-chords.mdx). It previously relied on React Contexts, which Astro *does* support, but not with the same markdown integration that Gatsby had. It has to do with Astro's islands concept.I followed Astro's advice and used [nanostores](https://github.com/nanostores/nanostores) with a [custom element](https://astro.build/blog/introducing-custom-elements). 
+- I had to rebuild part of my [chord chart system](/2021/06/30/render-chords.mdx). It previously relied on React Contexts, which Astro *does* support, but not with the same markdown integration that Gatsby had. It has to do with Astro's islands concept. I followed Astro's advice and used [nanostores](https://github.com/nanostores/nanostores) with a [custom element](https://astro.build/blog/introducing-custom-elements). 
 - I kept Tailwind. I like Tailwind, sue me!
 
 If I have to do a big migration like this again, I swear I'm going to just switch to WordPress.
