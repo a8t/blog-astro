@@ -5,11 +5,19 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 
 // Retrieve all articles
 const posts = await getSinglePage("posts");
+const chords = await getSinglePage("chords");
 
 // List of items to search in
-const searchList = posts.map((item: any) => ({
+const postSearchList = posts.map((item: any) => ({
   slug: item.slug,
   data: item.data,
+  content: item.body,
+}));
+
+const chordSearchList = chords.map((item: any) => ({
+  slug: item.slug,
+  data: item.data,
+  artist: item.artist,
   content: item.body,
 }));
 ---
@@ -17,7 +25,11 @@ const searchList = posts.map((item: any) => ({
 <Base title={`Search`}>
   <section class="section">
     <div class="container">
-      <SearchBar client:load searchList={searchList} />
+      <SearchBar
+        client:load
+        postSearchList={postSearchList}
+        chordSearchList={chordSearchList}
+      />
     </div>
   </section>
 </Base>
