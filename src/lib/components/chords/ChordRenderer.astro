@@ -1,20 +1,19 @@
 ---
 import React from "react";
-import { transposeSemitones } from "./chordStore";
 import { Chord, Interval } from "tonal";
+import { getChordStoreKey } from "./chordStoreKey";
 ---
 
 <chords-element>
   <span
-    class="block font-mono whitespace-pre text-green-700
-mt-2 text-xs
-sm:mt-4 sm:text-md"
+    class="block font-mono whitespace-pre text-green-700 mt-2 text-xs sm:mt-4 sm:text-md"
     ><slot /></span
   >
 </chords-element>
 
 <script>
-  import { transposeSemitones } from "./chordStore";
+  import { getChordStoreKey } from "./chordStoreKey";
+  import { chordStoreMap, getTransposeSemitones } from "./chordStore";
   import { Chord, Interval } from "tonal";
 
   class ChordElement extends HTMLElement {
@@ -22,10 +21,14 @@ sm:mt-4 sm:text-md"
       const span = this.querySelector("span");
       const originalChords = span?.textContent;
 
-      transposeSemitones.listen(async (semitones) => {
+      chordStoreMap.subscribe((newStore) => {
+        const chordStoreKey = getChordStoreKey();
+
         if (!span || !originalChords) {
           return;
         }
+
+        const semitones = getTransposeSemitones(chordStoreKey, newStore);
 
         span.textContent = originalChords
           .toString()

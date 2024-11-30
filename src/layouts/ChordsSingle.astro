@@ -33,7 +33,7 @@ const { title, date, artist } = data;
       <div class="content">
         <ControlMenu client:load>
           <AutoScrollControl client:load />
-          <TransposeControl client:load />
+          <TransposeControl client:only="react" />
         </ControlMenu>
 
         <Content components={{ Chords: ChordRenderer, Lyrics, Section }} />

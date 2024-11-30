@@ -1,34 +1,46 @@
 import React from "react";
 import { ControlButton } from "./controls/ControlButton";
+import { useStore } from "@nanostores/react";
 import { FaTimesCircle, FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 import {
-  transposeSemitones,
-  decrementTransposeSemitones,
-  incrementTransposeSemitones,
-  resetTransposeSemitones,
+  makeIncrementForKey,
+  makeDecrementForKey,
+  makeResetForKey,
+  chordStoreMap,
+  getTransposeSemitones,
 } from "./chordStore";
 
-import { useStore } from "@nanostores/react";
+import { getChordStoreKey, stringifyKey } from "./chordStoreKey";
+import { getConstantValue } from "typescript";
 
 export function TransposeControl() {
-  const $currentSemitoneOffset = useStore(transposeSemitones);
-  const isUnison = $currentSemitoneOffset === 0;
+  const chordStoreKey = getChordStoreKey();
+  const chordStore = useStore(chordStoreMap);
+  const currentSemitoneOffset = getTransposeSemitones(
+    chordStoreKey,
+    chordStore,
+  );
+
+  const isUnison = currentSemitoneOffset === 0;
 
   return (
     <div className="flex space-x-2 items-center mt-2">
       <span className="text-gray-500 text-sm">Transpose</span>
 
-      <ControlButton onPress={resetTransposeSemitones} disabled={isUnison}>
+      <ControlButton
+        onPress={makeResetForKey(chordStoreKey)}
+        disabled={isUnison}
+      >
         <FaTimesCircle className="w-8 h-8" />
       </ControlButton>
 
-      <ControlButton onPress={decrementTransposeSemitones}>
+      <ControlButton onPress={makeDecrementForKey(chordStoreKey)}>
         <FaMinusCircle className="w-8 h-8" />
       </ControlButton>
 
-      <div className="text-md w-6 text-center">{$currentSemitoneOffset}</div>
+      <div className="text-md w-6 text-center">{currentSemitoneOffset}</div>
 
-      <ControlButton onPress={incrementTransposeSemitones}>
+      <ControlButton onPress={makeIncrementForKey(chordStoreKey)}>
         <FaPlusCircle className="w-8 h-8" />
       </ControlButton>
     </div>
