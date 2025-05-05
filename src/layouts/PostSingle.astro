@@ -23,27 +23,25 @@ const { title, description, categories, image, date, tags } = post.data;
         <ul class="mt-4 flex flex-wrap items-center justify-center text-text">
           <li class="mx-3 flex items-center flex-wrap font-medium">
             <BiCalendarEdit className="mr-1 h-5 w-5 text-gray-600" />
-            <>{dateFormat(date)}</>
+            <span>{dateFormat(date)}</span>
           </li>
           <li class="mx-3 flex items-center flex-wrap">
             <BiCategoryAlt className="mr-1 h-[18px] w-[18px] text-gray-600" />
-            <>
-              <ul>
-                {
-                  categories.map((category: string, i: number) => (
-                    <li class="inline-block">
-                      <a
-                        href={`/categories/${slugify(category)}`}
-                        class="mr-2 hover:text-primary font-medium"
-                      >
-                        {humanize(category)}
-                        {i !== post.data.categories.length - 1 && ","}
-                      </a>
-                    </li>
-                  ))
-                }
-              </ul>
-            </>
+            <ul>
+              {
+                categories.map((category: string, i: number) => (
+                  <li class="inline-block">
+                    <a
+                      href={`/categories/${slugify(category)}`}
+                      class="mr-2 hover:text-primary font-medium"
+                    >
+                      {humanize(category)}
+                      {i !== post.data.categories.length - 1 && ","}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
           </li>
         </ul>
       </div>
