@@ -11,7 +11,6 @@ import {
 } from "./chordStore";
 
 import { getChordStoreKey, stringifyKey } from "./chordStoreKey";
-import { getConstantValue } from "typescript";
 
 export function TransposeControl() {
   const chordStoreKey = getChordStoreKey();
