@@ -1,9 +1,10 @@
 @use "sass:meta";
+@use "youtube";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@use "youtube";
 
 @layer base {
   @include meta.load-css("base");
