@@ -1,6 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import SearchBar from "@/layouts/SearchBar";
+import PostHogLayout from "@/layouts/PostHogLayout.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 
 // Retrieve all articles
@@ -22,14 +23,16 @@ const chordSearchList = chords.map((item: any) => ({
 }));
 ---
 
-<Base title={`Search`}>
-  <section class="section">
-    <div class="container">
-      <SearchBar
-        client:load
-        postSearchList={postSearchList}
-        chordSearchList={chordSearchList}
-      />
-    </div>
-  </section>
-</Base>
+<PostHogLayout>
+  <Base title={`Search`}>
+    <section class="section">
+      <div class="container">
+        <SearchBar
+          client:load
+          postSearchList={postSearchList}
+          chordSearchList={chordSearchList}
+        />
+      </div>
+    </section>
+  </Base>
+</PostHogLayout>

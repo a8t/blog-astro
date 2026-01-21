@@ -1,6 +1,7 @@
 ---
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
+import PostHogLayout from "@/layouts/PostHogLayout.astro";
 import Pagination from "@/components/Pagination.astro";
 import Posts from "@/layouts/Posts.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
@@ -14,39 +15,41 @@ const totalPages = Math.ceil(posts.length / config.settings.pagination);
 const currentPosts = sortedPosts.slice(0, config.settings.pagination);
 ---
 
-<Base>
-  <section class="section">
-    <header
-      class="mb-12 sm:mt-12 p-2 flex flex-col items-center sm:flex-row sm:space-x-4"
-    >
-      <div class="w-48 sm:w-2/3">
-        <Image src={waving} alt="Andy waving" />
-      </div>
-      <section class="max-w-lg flex flex-col py-4">
-        <h1 class="text-3xl sm:text-5xl text-teal-700 font-black mb-4">
-          Hi, I'm Andy.
-        </h1>
-        <section class="space-y-2">
-          <p>
-            I'm a socialist, software developer, and recovering physicist. I'm
-            based in Montreal, Quebec, Canada. Here's more{" "}
-            <a href="/about-me">about me</a>.
-          </p>
-          <p>
-            This is my blog, where I post thoughts about politics, software, and
-            more. The title of this blog is <a
-              href="https://en.wikipedia.org/wiki/April_Theses"
-            >
-              <strong class="font-black">april theses</strong></a
-            >, with which I share a set of initials and a birthday.
-          </p>
+<PostHogLayout>
+  <Base>
+    <section class="section">
+      <header
+        class="mb-12 sm:mt-12 p-2 flex flex-col items-center sm:flex-row sm:space-x-4"
+      >
+        <div class="w-48 sm:w-2/3">
+          <Image src={waving} alt="Andy waving" />
+        </div>
+        <section class="max-w-lg flex flex-col py-4">
+          <h1 class="text-3xl sm:text-5xl text-teal-700 font-black mb-4">
+            Hi, I'm Andy.
+          </h1>
+          <section class="space-y-2">
+            <p>
+              I'm a socialist, software developer, and recovering physicist. I'm
+              based in Montreal, Quebec, Canada. Here's more {" "}
+              <a href="/about-me">about me</a>.
+            </p>
+            <p>
+              This is my blog, where I post thoughts about politics, software, and
+              more. The title of this blog is <a
+                href="https://en.wikipedia.org/wiki/April_Theses"
+              >
+                <strong class="font-black">april theses</strong></a
+              >, with which I share a set of initials and a birthday.
+            </p>
+          </section>
         </section>
-      </section>
-    </header>
+      </header>
 
-    <div class="container">
-      <Posts posts={currentPosts} />
-      <Pagination currentPage={1} totalPages={totalPages} />
-    </div>
-  </section>
-</Base>
+      <div class="container">
+        <Posts posts={currentPosts} />
+        <Pagination currentPage={1} totalPages={totalPages} />
+      </div>
+    </section>
+  </Base>
+</PostHogLayout>

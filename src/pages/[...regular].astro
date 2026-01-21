@@ -1,5 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
+import PostHogLayout from "@/layouts/PostHogLayout.astro";
 import Default from "@/layouts/Default.astro";
 import PostSingle from "@/layouts/PostSingle.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
@@ -26,17 +27,19 @@ const { page } = Astro.props;
 const { title, meta_title, description, image } = page.data;
 ---
 
-<Base
-  title={title}
-  meta_title={meta_title}
-  description={description}
-  image={image}
->
-  {
-    postsSlug.includes(page.slug) ? (
-      <PostSingle post={page} />
-    ) : (
-      <Default data={page} />
-    )
-  }
-</Base>
+<PostHogLayout>
+  <Base
+    title={title}
+    meta_title={meta_title}
+    description={description}
+    image={image}
+  >
+    {
+      postsSlug.includes(page.slug) ? (
+        <PostSingle post={page} />
+      ) : (
+        <Default data={page} />
+      )
+    }
+  </Base>
+</PostHogLayout>
