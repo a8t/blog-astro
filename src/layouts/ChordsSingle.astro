@@ -7,15 +7,17 @@ import { ControlMenu } from "@/components/chords/controls/ControlMenu";
 import { TransposeControl } from "@/components/chords/Chords";
 import { AutoScrollControl } from "@/components/chords/controls/AutoScrollControl";
 import ChordRenderer from "@/components/chords/ChordRenderer.astro";
+import DeprecationModal from "@/components/chords/DeprecationModal";
 
 const {
-  data: { data, render },
+  data: { data, render, slug },
 } = Astro.props;
 
 const { Content } = await render();
 const { title, date, artist } = data;
 ---
 
+<DeprecationModal client:load page="song" slug={slug} title={title} />
 <section class="section">
   <div class="container">
     <article class="row justify-center">

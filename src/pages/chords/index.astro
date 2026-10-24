@@ -1,6 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import PostHogLayout from "@/layouts/PostHogLayout.astro";
+import DeprecationModal from "@/components/chords/DeprecationModal";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { humanize } from "@/lib/utils/textConverter";
 
@@ -9,6 +10,7 @@ const chords = await getSinglePage("chords");
 
 <PostHogLayout>
   <Base title={"Chords"}>
+    <DeprecationModal client:load page="index" />
     <section class="section">
       <div class="container text-center">
         <h1 class="h2 page-heading">Chords</h1>
